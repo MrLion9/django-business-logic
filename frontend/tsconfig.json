@@ -11,6 +11,9 @@
     "strictNullChecks": false,
     "baseUrl": "./src",
     "paths": {
+      "blockly": [
+        "src/app/blockly/blockly.d.ts"
+      ]
     },
     "lib": [
       "dom",

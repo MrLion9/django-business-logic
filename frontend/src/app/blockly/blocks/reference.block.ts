@@ -1,3 +1,5 @@
+import { Blockly } from 'blockly';
+
 Blockly.Blocks['business_logic_reference'] = {
   init: function() {
     this.appendDummyInput()

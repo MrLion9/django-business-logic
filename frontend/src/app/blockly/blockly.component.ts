@@ -13,6 +13,8 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 import { BackendService } from '../backend.service';
 import { BreadcrumbComponent } from '../breadcrumb/breadcrumb.component';
 
+
+
 @Component({
   selector: 'blockly',
   template: `
@@ -41,7 +43,7 @@ export class BlocklyComponent {
   @ViewChild('blocklyArea') blocklyArea;
   //@ViewChild('toolbox') toolbox;
   // @Output() save = new EventEmitter();
-  private workspace;
+  private workspace: Blockly.Workspace;
 
   constructor(
     public backend: BackendService,
@@ -57,7 +59,7 @@ export class BlocklyComponent {
       {
         toolbox: toolbox,
         trashcan: false,
-        sounds: false,
+        sound: false,
         media: "./blockly/"
       });
 
@@ -68,7 +70,7 @@ export class BlocklyComponent {
         this.version = envelope;
 
         var xml = Blockly.Xml.textToDom(envelope["xml"]);
-        Blockly.Xml.domToWorkspace(xml, this.workspace);
+        Blockly.Xml.domToWorkspace(this.workspace, xml);
       });
     });
 
@@ -98,6 +100,6 @@ export class BlocklyComponent {
   private initXml(xmlText) {
     this.workspace.clear();
     let xml = Blockly.Xml.textToDom(xmlText);
-    Blockly.Xml.domToWorkspace(xml, this.workspace);
+    Blockly.Xml.domToWorkspace(this.workspace, xml);
   }
 }
